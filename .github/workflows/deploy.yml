@@ -27,4 +27,4 @@ jobs:
       - name: Deploy
         run: mvn compile jib:build
         env:
-          NEW_RELIC_API_KEY: ${{ secrets.NEW_RELIC_API_KEY }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
