@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      network: host
+    environment:
+      DATABASE_URL: "postgres://jinventory:jinventory@postgres:5432/jinventory"
+    image: "cw-jinventory"
+    links:
+      - postgres
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  flyway:
+    image: flyway/flyway:7
+    command: -url=jdbc:postgresql://postgres:5432/jinventory -user=jinventory -password=jinventory migrate
+    volumes:
+      - .:/flyway/sql
+
+  postgres:
+    environment:
+      POSTGRES_DB: "jinventory"
+      POSTGRES_PASSWORD: "jinventory"
+      POSTGRES_USER: "jinventory"
+    image: postgres:13
+    ports:
+      - "5432:5432"

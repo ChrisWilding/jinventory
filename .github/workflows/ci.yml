@@ -8,6 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_DB: 'jinventory'
+          POSTGRES_PASSWORD: 'jinventory'
+          POSTGRES_USER: 'jinventory'
+        ports:
+          - 5432:5432
+
     steps:
       - uses: actions/checkout@v2
 

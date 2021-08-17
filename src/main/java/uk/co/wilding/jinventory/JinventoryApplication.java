@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JinventoryApplication {
 
     public static void main(String[] args) {
-        log.info("test deploy to heroku");
         SpringApplication.run(JinventoryApplication.class, args);
     }
 }
